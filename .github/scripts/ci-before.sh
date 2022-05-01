@@ -13,7 +13,7 @@ mkdir -p ${HOME}/sync
   docker kill tool
 }
 
-docker run --rm -tid --name db changsongyang/google_containers_db2 top
+docker run --rm -tid --name db changsongyang/google_containers_db top
 docker cp db:/bolt.db ${HOME}/sync/
 
 docker kill db

@@ -13,5 +13,5 @@ cat>Dockerfile<<EOF
 FROM zhangguanzhang/alpine
 COPY bolt.db /
 EOF
-docker build -t changsongyang/google_containers_db2 .
-docker push changsongyang/google_containers_db2
+docker build -t changsongyang/google_containers_db .
+docker push changsongyang/google_containers_db
