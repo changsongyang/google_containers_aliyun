@@ -15,7 +15,8 @@ import (
 )
 
 const (
-	imgList = "https://k8s.gcr.io/v2/tags/list"
+	// imgList = "https://k8s.gcr.io/v2/tags/list"
+	imgList = "https://raw.githubusercontent.com/changsongyang/google_containers_aliyun/master/k8s_gcr_io_v2_tags_list_amd64_20220423.json"
 	DefaultHTTPTimeout        = 15 * time.Second
 	repo = "k8s.gcr.io/"
 )
