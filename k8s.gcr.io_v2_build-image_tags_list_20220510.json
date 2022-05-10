@@ -1,0 +1,22 @@
+{
+  "child": [
+    "debian-base",
+    "debian-base-amd64",
+    "debian-hyperkube-base",
+    "debian-hyperkube-base-amd64",
+    "debian-iptables",
+    "debian-iptables-amd64",
+    "go-runner",
+    "go-runner-amd64",
+    "kube-cross",
+    "kube-cross-amd64",
+    "setcap",
+    "setcap-amd64",
+	"kube-cross",
+	"coredns/coredns"
+	"kube-cross/kube-cross"
+  ],
+  "manifest": {},
+  "name": "build-image",
+  "tags": []
+}
