@@ -12,9 +12,9 @@
     "kube-cross-amd64",
     "setcap",
     "setcap-amd64",
-	"kube-cross",
-	"coredns/coredns"
-	"kube-cross/kube-cross"
+    "kube-cross",
+    "coredns/coredns",
+    "kube-cross/kube-cross"
   ],
   "manifest": {},
   "name": "build-image",
