@@ -15,16 +15,17 @@ import (
 )
 
 const (
-	// imgList = "https://k8s.gcr.io/v2/tags/list"
-	imgList = "https://raw.githubusercontent.com/changsongyang/google_containers_aliyun/master/k8s_gcr_io_v2_tags_list_amd64_20220423.json"
+	// imgList = "https://registry.k8s.io/v2/tags/list"
+	// 此处只同步AMD64架构的镜像
+	imgList = "https://raw.githubusercontent.com/changsongyang/google_containers_aliyun/master/registry-k8s-io-v2-tags-list-amd64-20250416.json"
 	DefaultHTTPTimeout        = 15 * time.Second
-	repo = "k8s.gcr.io/"
+	repo = "registry.k8s.io/"
 )
 
 
 // baseName，不是full name
 func NSImages(op *SyncOption) ([]string, error) {
-	log.Info("get k8s.gcr.io public images...")
+	log.Info("get registry.k8s.io public images...")
 	resp, body, errs := gorequest.New().
 		Timeout(DefaultHTTPTimeout).
 		Retry(op.Retry, op.RetryInterval).
@@ -50,7 +51,7 @@ func NSImages(op *SyncOption) ([]string, error) {
 		resp, body, errs := gorequest.New().
 			Timeout(DefaultHTTPTimeout).
 			Retry(op.Retry, op.RetryInterval).
-			Get(fmt.Sprintf("https://k8s.gcr.io/v2/%s/tags/list", v)).
+			Get(fmt.Sprintf("https://registry.k8s.io/v2/%s/tags/list", v)).
 			EndBytes()
 		if errs != nil {
 			log.Errorf("%s", errs)
@@ -74,7 +75,7 @@ func NSImages(op *SyncOption) ([]string, error) {
 	return imageNames, nil
 }
 
-//并发获取k8s.gcr.io/$imgName:tag写入chan
+//并发获取registry.k8s.io/$imgName:tag写入chan
 func ImageNames(opt *SyncOption) (Images, error) {
 
 	publicImageNames, err := NSImages(opt)
@@ -82,7 +83,7 @@ func ImageNames(opt *SyncOption) (Images, error) {
 		return nil, err
 	}
 
-	log.Infof("sync ns count: %d in k8s.gcr.io", len(publicImageNames))
+	log.Infof("sync ns count: %d in registry.k8s.io", len(publicImageNames))
 
 	pool, err := ants.NewPool(opt.QueryLimit, ants.WithPreAlloc(true), ants.WithPanicHandler(func(i interface{}) {
 		log.Error(i)
